@@ -175,7 +175,7 @@ export function defineAsyncComponent<
             onError(err)
             return () =>
               errorComponent
-                ? createVNode(errorComponent as ConcreteComponent, {
+                ? createVNode(errorComponent, {
                     error: err,
                   })
                 : null

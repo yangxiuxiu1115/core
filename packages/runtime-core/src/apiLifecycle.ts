@@ -21,7 +21,7 @@ export function injectHook(
   type: LifecycleHooks,
   hook: Function & { __weh?: Function },
   target: ComponentInternalInstance | null = currentInstance,
-  prepend: boolean = false,
+  prepend = false,
 ): Function | undefined {
   if (target) {
     const hooks = target[type] || (target[type] = [])

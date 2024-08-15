@@ -3,7 +3,7 @@ import { getCurrentInstance, isInSSRComponentSetup } from './component'
 
 export const computed: typeof _computed = (
   getterOrOptions: any,
-  debugOptions?: any,
+  debugOptions: any,
 ) => {
   // @ts-expect-error
   const c = _computed(getterOrOptions, debugOptions, isInSSRComponentSetup)

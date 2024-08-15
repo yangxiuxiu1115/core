@@ -348,7 +348,7 @@ const KeepAliveImpl: ComponentOptions = {
         keys.add(key)
         // prune oldest entry
         if (max && keys.size > parseInt(max as string, 10)) {
-          pruneCacheEntry(keys.values().next().value)
+          pruneCacheEntry(keys.values().next().value!)
         }
       }
       // avoid vnode being unmounted
@@ -366,7 +366,7 @@ if (__COMPAT__) {
 
 // export the public type for h/tsx inference
 // also to avoid inline import() in generated d.ts files
-export const KeepAlive = KeepAliveImpl as any as {
+export const KeepAlive = KeepAliveImpl as unknown as {
   __isKeepAlive: true
   new (): {
     $props: VNodeProps & KeepAliveProps
@@ -378,7 +378,7 @@ export const KeepAlive = KeepAliveImpl as any as {
 
 function matches(pattern: MatchPattern, name: string): boolean {
   if (isArray(pattern)) {
-    return pattern.some((p: string | RegExp) => matches(p, name))
+    return pattern.some(p => matches(p, name))
   } else if (isString(pattern)) {
     return pattern.split(',').includes(name)
   } else if (isRegExp(pattern)) {
